@@ -31,4 +31,3 @@ while True:
 		if not data:
 			break
 		print("> " + str(data))
-return 0
