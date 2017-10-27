@@ -8,7 +8,7 @@ port = int(input("Enter port number: "))
 
 #### Key receiving
 srvsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-srvsocket.bind((addr, port))
+srvsocket.bind((addr, port+1))
 srvsocket.listen(1)
 (clientsocket, address) = srvsocket.accept()
 print("Connection established, transferring key...")
