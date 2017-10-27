@@ -11,7 +11,7 @@ addr = str(input("Enter sender address: "))
 port = int(input("Enter port number: "))
 
 #### Key sending
-s = socket.socket(AF_INET, SOCK_STREAM)
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((addr, port))
 s.send(str(key_private.publicKey().exportKey()).encode())
 ####
