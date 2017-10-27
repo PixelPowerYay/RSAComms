@@ -12,10 +12,9 @@ port = int(input("Enter port number: "))
 
 #### Key sending
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((addr, port))
-s.send(str(key_private.publicKey().exportKey()).encode())
+s.connect((addr, port+1))
+s.send(str(key_private.publickey().exportKey(format='PEM')).encode())
 ####
-
 
 srvsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 srvsocket.bind((addr, port))
