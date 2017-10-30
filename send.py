@@ -13,7 +13,7 @@ srvsocket.listen(1)
 (clientsocket, address) = srvsocket.accept()
 print("Connection established, transferring key...")
 time.sleep(1)
-key_pub_temp = clientsocket.recv(8129)
+key_pub_temp = clientsocket.recv(8129).decode
 key_pub = RSA.importKey(key_pub_temp)
 ###
 
