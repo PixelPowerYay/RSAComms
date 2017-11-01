@@ -1,21 +1,21 @@
-from Crypto.PublicKey import RSA
-from Crypto import Random
+import rsa
 import socket
 import sys
 import time
 
-random_gen = Random.new().read
-key_private = RSA.generate(1024, random_gen)
+(pubkey, privkey) = rsa.newkeys(2048)
 
 addr = str(input("Enter sender address: "))
 port = int(input("Enter port number: "))
 
+
 #### Key sending
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((addr, port))
-s.send(str(key_private.publicKey().exportKey()).encode())
+s.connect((addr, port+1))
+key_str = str(pubkey)[:10]
+#s.send(key_str.encode())
+print(key_str)
 ####
-
 
 srvsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 srvsocket.bind((addr, port))
