@@ -12,9 +12,7 @@ port = int(input("Enter port number: "))
 #### Key sending
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((addr, port+1))
-key_str = str(pubkey)[:10]
-#s.send(key_str.encode())
-print(key_str)
+s.send(rsa.PublicKey().save_pkcs1(format='PEM').encode('utf-8'))
 ####
 
 srvsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -26,4 +24,4 @@ print("Main connection established with " + str(address))
 
 while True:
 	(clientsocket, address) = srvsocket.accept()
-	print("> " + str(key_private.decrypt(clientsocket.recv(8192).decode())))
+	print("> " + str(rsa.decrypt(clientsocket.recv(2048).decode('utf-8'), privkey)))
